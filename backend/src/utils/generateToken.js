@@ -1,0 +1,9 @@
+﻿const jwt = require('jsonwebtoken');
+
+const generateToken = (id, role = 'patient') => {
+  return jwt.sign({ id, role }, process.env.JWT_SECRET || 'healthcare_secret', {
+    expiresIn: process.env.JWT_EXPIRES_IN || '7d',
+  });
+};
+
+module.exports = { generateToken };
